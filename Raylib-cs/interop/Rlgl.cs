@@ -600,13 +600,7 @@ public static unsafe partial class Rlgl
     public static extern void DrawVertexArrayInstanced(int offset, int count, int instances);
 
     [DllImport(NativeLibName, EntryPoint = "rlDrawVertexArrayElementsInstanced", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void DrawVertexArrayElementsInstanced(
-        int offset,
-        int count,
-        void* buffer,
-        int instances
-    );
-
+    public static extern void DrawVertexArrayElementsInstanced(int offset, int count, void* buffer, int instances);
 
     // Textures data management
 

@@ -212,6 +212,16 @@ public struct Rectangle
         this = Rectangle.Shrink(this, shrink);
     }
 
+    public readonly void BeginScissorMode()
+    {
+        Raylib.BeginScissorModeRec(this);
+    }
+
+    public readonly void EndScissorMode()
+    {
+        Raylib.EndScissorMode();
+    }
+
     public readonly override string ToString()
     {
         return $"{{X:{X} Y:{Y} Width:{Width} Height:{Height}}}";

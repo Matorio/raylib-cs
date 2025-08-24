@@ -53,6 +53,18 @@ public static unsafe partial class Raylib
         return SetGamepadMappings(str1.AsPointer());
     }
 
+    /// <summary>Begin scissor mode (define screen area with Vector2 for following drawing)</summary>
+    public static void BeginScissorModeV(Vector2 position, Vector2 size)
+    {
+        BeginScissorMode((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
+    }
+
+    /// <summary>Begin scissor mode (define screen area with a rectangle for following drawing)</summary>
+    public static void BeginScissorModeRec(Rectangle rec)
+    {
+        BeginScissorMode((int)rec.X, (int)rec.Y, (int)rec.Width, (int)rec.Height);
+    }
+
     /// <summary>Load shader from files and bind default locations</summary>
     public static Shader LoadShader(string vsFileName, string fsFileName)
     {
