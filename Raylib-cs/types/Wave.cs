@@ -6,7 +6,7 @@ namespace Raylib_cs;
 /// Wave type, defines audio wave data
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct Wave
+public unsafe struct Wave : IValidable
 {
     /// <summary>
     /// Number of samples

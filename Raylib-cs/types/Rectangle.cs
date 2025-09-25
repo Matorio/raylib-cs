@@ -9,28 +9,12 @@ namespace Raylib_cs;
 [StructLayout(LayoutKind.Sequential)]
 public struct Rectangle
 {
+    private const int DEFAULT_ROUNDED_SEGMENTS = 5;
+
     public float X;
     public float Y;
     public float Width;
     public float Height;
-
-    public static Rectangle Grow(Rectangle rec, float growth)
-    {
-        rec.X -= growth;
-        rec.Y -= growth;
-        rec.Width += growth * 2.0f;
-        rec.Height += growth * 2.0f;
-        return rec;
-    }
-
-    public static Rectangle Shrink(Rectangle rec, float shrink)
-    {
-        rec.X += shrink;
-        rec.Y += shrink;
-        rec.Width-= shrink * 2.0f;
-        rec.Height -= shrink * 2.0f;
-        return rec;
-    }
 
     public Rectangle(float x, float y, float width, float height)
     {
@@ -94,9 +78,11 @@ public struct Rectangle
     {
         get
         {
-            Vector2 center = new Vector2();
-            center.X = X + (Width / 2.0f);
-            center.Y = Y + (Height / 2.0f);
+            Vector2 center = new Vector2
+            {
+                X = X + (Width / 2.0f),
+                Y = Y + (Height / 2.0f)
+            };
             return center;
         }
     }
@@ -108,7 +94,7 @@ public struct Rectangle
 
     public readonly void Draw(Vector2 origin, Color color)
     {
-        Draw(origin, 0.0f, color);
+        Raylib.DrawRectanglePro(this, origin, 0.0f, color);
     }
 
     public readonly void Draw(Vector2 origin, float rotation, Color color)
@@ -154,7 +140,7 @@ public struct Rectangle
 
     public readonly void DrawRounded(float roundness, Color color)
     {
-        Raylib.DrawRectangleRounded(this, roundness, 10, color);
+        Raylib.DrawRectangleRounded(this, roundness, DEFAULT_ROUNDED_SEGMENTS, color);
     }
 
     public readonly void DrawRounded(float roundness, int segments, Color color)
@@ -164,7 +150,7 @@ public struct Rectangle
 
     public readonly void DrawRoundedLines(float roundness, Color color)
     {
-        Raylib.DrawRectangleRoundedLines(this, roundness, 10, color);
+        Raylib.DrawRectangleRoundedLines(this, roundness, DEFAULT_ROUNDED_SEGMENTS, color);
     }
 
     public readonly void DrawRoundedLines(float roundness, int segments, Color color)
@@ -174,7 +160,7 @@ public struct Rectangle
 
     public readonly void DrawRoundedLines(float roundness, float thickness, Color color)
     {
-        Raylib.DrawRectangleRoundedLinesEx(this, roundness, 10, thickness, color);
+        Raylib.DrawRectangleRoundedLinesEx(this, roundness, DEFAULT_ROUNDED_SEGMENTS, thickness, color);
     }
 
     public readonly void DrawRoundedLines(float roundness, int segments, float thickness, Color color)
@@ -204,12 +190,18 @@ public struct Rectangle
 
     public void Grow(float growth)
     {
-        this = Rectangle.Grow(this, growth);
+        this.X -= growth;
+        this.Y -= growth;
+        this.Width += growth * 2.0f;
+        this.Height += growth * 2.0f;
     }
 
     public void Shrink(float shrink)
     {
-        this = Rectangle.Shrink(this, shrink);
+        this.X += shrink;
+        this.Y += shrink;
+        this.Width -= shrink * 2.0f;
+        this.Height -= shrink * 2.0f;
     }
 
     public readonly void BeginScissorMode()

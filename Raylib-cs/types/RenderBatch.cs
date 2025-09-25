@@ -93,7 +93,7 @@ public unsafe struct VertexBuffer
     /// </summary>
     public readonly Span<T> VerticesAs<T>() where T : unmanaged
     {
-        return new(Vertices, ElementCount * sizeof(float) / sizeof(T));
+        return new Span<T>(Vertices, ElementCount * sizeof(float) / sizeof(T));
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public unsafe struct VertexBuffer
     /// </summary>
     public readonly Span<T> TexCoordsAs<T>() where T : unmanaged
     {
-        return new(TexCoords, ElementCount * sizeof(float) / sizeof(T));
+        return new Span<T>(TexCoords, ElementCount * sizeof(float) / sizeof(T));
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ public unsafe struct VertexBuffer
     /// </summary>
     public readonly Span<T> NormalsAs<T>() where T : unmanaged
     {
-        return new(Normals, ElementCount * sizeof(float) / sizeof(T));
+        return new Span<T>(Normals, ElementCount * sizeof(float) / sizeof(T));
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ public unsafe struct VertexBuffer
     /// </summary>
     public readonly Span<T> ColorsAs<T>() where T : unmanaged
     {
-        return new(Colors, ElementCount * sizeof(byte) / sizeof(T));
+        return new Span<T>(Colors, ElementCount * sizeof(byte) / sizeof(T));
     }
 }
 
@@ -128,7 +128,7 @@ public unsafe struct VertexBuffer
 /// of those state-change happens (this is done in core module)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public partial struct DrawCall
+public struct DrawCall
 {
     /// <summary>
     /// Drawing mode: LINES, TRIANGLES, QUADS

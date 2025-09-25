@@ -62,7 +62,7 @@ public static unsafe partial class Raylib
     /// <summary>Begin scissor mode (define screen area with a rectangle for following drawing)</summary>
     public static void BeginScissorModeRec(Rectangle rec)
     {
-        BeginScissorMode((int)rec.X, (int)rec.Y, (int)rec.Width, (int)rec.Height);
+        BeginScissorModeV(rec.Position, rec.Size);
     }
 
     /// <summary>Load shader from files and bind default locations</summary>
@@ -1580,5 +1580,11 @@ public static unsafe partial class Raylib
         center.X = GetScreenWidth() / 2.0f;
         center.Y = GetScreenHeight() / 2.0f;
         return center;
+    }
+
+    public static void DrawLineStrip(System.Collections.Generic.IEnumerable<Vector2> points, Color color)
+    {
+        Vector2[] pointArray = System.Linq.Enumerable.ToArray<Vector2>(points);
+        DrawLineStrip(pointArray, pointArray.Length, color);
     }
 }

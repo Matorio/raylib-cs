@@ -7,7 +7,7 @@ namespace Raylib_cs;
 /// NOTE: Anything longer than ~10 seconds should be streamed
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct Music
+public unsafe struct Music: IValidable
 {
     /// <summary>
     /// Audio stream
@@ -40,6 +40,11 @@ public unsafe struct Music
     public static Music Load(string fileName)
     {
         return Raylib.LoadMusicStream(fileName);
+    }
+
+    public static Music LoadFromMemory(string fileType, byte[] fileData)
+    {
+        return Raylib.LoadMusicStreamFromMemory(fileType, fileData);
     }
 
     public readonly void Play()

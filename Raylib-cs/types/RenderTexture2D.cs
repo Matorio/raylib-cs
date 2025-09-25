@@ -6,7 +6,7 @@ namespace Raylib_cs;
 /// RenderTexture2D type, for texture rendering
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct RenderTexture2D
+public struct RenderTexture2D : IValidable
 {
     /// <summary>
     /// OpenGL Framebuffer Object (FBO) id
@@ -28,6 +28,11 @@ public struct RenderTexture2D
     public static RenderTexture2D Load(int width, int height)
     {
         return Raylib.LoadRenderTexture(width, height);
+    }
+
+    public static RenderTexture2D Load(System.Numerics.Vector2 size)
+    {
+        return Raylib.LoadRenderTexture((int)size.X, (int)size.Y);
     }
 
     public void Unload()

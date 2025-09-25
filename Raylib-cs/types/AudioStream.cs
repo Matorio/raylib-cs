@@ -8,7 +8,7 @@ namespace Raylib_cs;
 /// NOTE: Useful to create custom audio streams not bound to a specific file
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct AudioStream
+public struct AudioStream : IValidable
 {
     //TODO: convert
     /// <summary>

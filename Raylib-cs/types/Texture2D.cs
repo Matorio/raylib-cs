@@ -103,7 +103,7 @@ public enum CubemapLayout
 /// NOTE: Data stored in GPU memory
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct Texture2D
+public struct Texture2D : IValidable
 {
     /// <summary>
     /// OpenGL texture id
@@ -139,6 +139,18 @@ public struct Texture2D
     public static Texture2D Load(string fileName)
     {
         return Raylib.LoadTexture(fileName);
+    }
+
+    public static Texture2D[] LoadMultiple(params string[] files)
+    {
+        Texture2D[] result = new Texture2D[files.Length];
+        Image[] images = Image.LoadMultiple(files);
+        for (int i = 0; i < files.Length; i++)
+        {
+            result[i] = Raylib.LoadTextureFromImage(images[i]);
+            images[i].Unload();
+        }
+        return result;
     }
 
     public static Texture2D LoadFromImage(Image image)

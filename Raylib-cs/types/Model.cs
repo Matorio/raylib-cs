@@ -25,7 +25,7 @@ public unsafe struct BoneInfo
 /// Model type
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct Model
+public unsafe struct Model : IValidable
 {
     /// <summary>
     /// Local transform matrix

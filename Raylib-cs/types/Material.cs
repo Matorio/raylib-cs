@@ -70,7 +70,7 @@ public struct MaterialMap
 /// Material type (generic)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct Material
+public unsafe struct Material : IValidable
 {
     /// <summary>
     /// Material shader

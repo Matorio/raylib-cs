@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Numerics;
 
 namespace Raylib_cs;
@@ -134,7 +135,7 @@ public enum PixelFormat
 /// Image, pixel data stored in CPU memory (RAM)
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct Image
+public unsafe struct Image : IValidable
 {
     /// <summary>
     /// Image raw data
@@ -170,6 +171,14 @@ public unsafe struct Image
     public static Image Load(string fileName)
     {
         return Raylib.LoadImage(fileName);
+    }
+
+    public static Image[] LoadMultiple(params string[] files)
+    {
+        Image[] result = new Image[files.Length];
+        Parallel.For(0, files.Length, delegate (int i)
+        { result[i] = Raylib.LoadImage(files[i]); });
+        return result;
     }
 
     public static Image LoadAnim(string fileName, out int frames)

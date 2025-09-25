@@ -46,7 +46,35 @@ public static unsafe class Logging
     public static unsafe void LogConsole(int msgType, sbyte* text, sbyte* args)
     {
         string message = GetLogMessage(new IntPtr(text), new IntPtr(args));
+        switch ((TraceLogLevel)msgType)
+        {
+            case TraceLogLevel.All:
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                break;
+            case TraceLogLevel.Trace:
+                break;
+            case TraceLogLevel.Debug:
+                Console.ForegroundColor = ConsoleColor.Blue;
+                break;
+            case TraceLogLevel.Info:
+                break;
+            case TraceLogLevel.Warning:
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                break;
+            case TraceLogLevel.Error:
+                Console.ForegroundColor = ConsoleColor.Red;
+                break;
+            case TraceLogLevel.Fatal:
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                break;
+            case TraceLogLevel.None:
+                Console.ForegroundColor = ConsoleColor.Gray;
+                break;
+            default:
+                break;
+        }
         Console.WriteLine(message);
+        Console.ResetColor();
     }
 
     public static string GetLogMessage(IntPtr format, IntPtr args)
