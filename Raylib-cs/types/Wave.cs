@@ -35,4 +35,34 @@ public unsafe struct Wave : IValidable
     public void* Data;
 
     public readonly CBool IsValid => Raylib.IsWaveValid(this);
+
+    public static Wave Load(string fileName)
+    {
+        return Raylib.LoadWave(fileName);
+    }
+
+    public CBool Export(string fileName)
+    {
+        return Raylib.ExportWave(this, fileName);
+    }
+
+    public CBool ExportAsCode(string fileName)
+    {
+        return Raylib.ExportWaveAsCode(this, fileName);
+    }
+
+    public void Format(int sampleRate, int sampleSize, int channels)
+    {
+        Raylib.WaveFormat(ref this, sampleRate, sampleSize, channels);
+    }
+
+    public void Crop(int initFrame, int finalFrame)
+    {
+        Raylib.WaveCrop(ref this, initFrame, finalFrame);
+    }
+
+    public void Unload()
+    {
+        Raylib.UnloadWave(this);
+    }
 }

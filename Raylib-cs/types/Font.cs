@@ -92,4 +92,6 @@ public unsafe struct Font : IValidable
     public GlyphInfo* Glyphs;
 
     public readonly CBool IsValid => Raylib.IsFontValid(this);
+
+    public readonly Font Default => Raylib.GetFontDefault();
 }
