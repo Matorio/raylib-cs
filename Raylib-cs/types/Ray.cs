@@ -24,6 +24,11 @@ public struct Ray
         this.Position = position;
         this.Direction = direction;
     }
+
+    public readonly void Draw(Color color)
+    {
+        Raylib.DrawRay(this, color);
+    }
 }
 
 /// <summary>

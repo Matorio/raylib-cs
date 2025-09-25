@@ -63,4 +63,39 @@ public struct Camera3D
         this.FovY = fovY;
         this.Projection = projection;
     }
+
+    public void Udate(CameraMode mode)
+    {
+        Raylib.UpdateCamera(ref this, mode);
+    }
+
+    public void Update(Vector3 movement, Vector3 rotation, float zoom)
+    {
+        Raylib.UpdateCameraPro(ref this, movement, rotation, zoom);
+    }
+
+    public void MoveForward(float distance, CBool moveInWorldPlane)
+    {
+        Raylib.CameraMoveForward(ref this, distance, moveInWorldPlane);
+    }
+
+    public void MoveLeft(float distance, CBool moveInWorldPlane)
+    {
+        Raylib.CameraMoveRight(ref this, -distance, moveInWorldPlane);
+    }
+
+    public void MoveRight(float distance, CBool moveInWorldPlane)
+    {
+        Raylib.CameraMoveRight(ref this, distance, moveInWorldPlane);
+    }
+
+    public void MoveUp(float distance)
+    {
+        Raylib.CameraMoveUp(ref this, distance);
+    }
+
+    public void MoveToTarget(float delta)
+    {
+        Raylib.CameraMoveToTarget(ref this, delta);
+    }
 }
