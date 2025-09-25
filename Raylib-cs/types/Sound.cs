@@ -17,4 +17,7 @@ public struct Sound : IValidable
     /// Total number of frames (considering channels)
     /// </summary>
     public uint FrameCount;
+
+    public readonly CBool IsValid => Raylib.IsSoundValid(this);
+    public readonly CBool IsPlaying => Raylib.IsSoundPlaying(this);
 }

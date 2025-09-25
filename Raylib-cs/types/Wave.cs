@@ -33,4 +33,6 @@ public unsafe struct Wave : IValidable
     /// Buffer data pointer
     /// </summary>
     public void* Data;
+
+    public readonly CBool IsValid => Raylib.IsWaveValid(this);
 }

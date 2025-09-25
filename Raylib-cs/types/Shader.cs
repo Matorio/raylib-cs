@@ -87,4 +87,6 @@ public unsafe struct Shader : IValidable
     /// Shader locations array (MAX_SHADER_LOCATIONS, int *)
     /// </summary>
     public int* Locs;
+
+    public readonly CBool IsValid => Raylib.IsShaderValid(this);
 }

@@ -73,6 +73,8 @@ public unsafe struct Model : IValidable
     /// Bones base transformation (pose, Transform *)
     /// </summary>
     public Transform* BindPose;
+
+    public readonly CBool IsValid => Raylib.IsModelValid(this);
 }
 
 /// <summary>

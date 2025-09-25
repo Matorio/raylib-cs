@@ -87,4 +87,6 @@ public unsafe struct Material : IValidable
     /// Material generic parameters (if required)
     /// </summary>
     public fixed float Param[4];
+
+    public readonly CBool IsValid => Raylib.IsMaterialValid(this);
 }

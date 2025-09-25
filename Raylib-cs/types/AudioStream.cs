@@ -35,4 +35,8 @@ public struct AudioStream : IValidable
     /// Number of channels (1-mono, 2-stereo)
     /// </summary>
     public uint Channels;
+
+    public readonly CBool IsValid => Raylib.IsAudioStreamValid(this);
+    public readonly CBool IsPlaying => Raylib.IsAudioStreamPlaying(this);
+    public readonly CBool IsProcessed => Raylib.IsAudioStreamProcessed(this);
 }
