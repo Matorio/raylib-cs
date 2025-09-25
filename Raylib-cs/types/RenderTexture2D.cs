@@ -36,6 +36,16 @@ public struct RenderTexture2D : IValidable
         return Raylib.LoadRenderTexture((int)size.X, (int)size.Y);
     }
 
+    public void BeginDrawing()
+    {
+        Raylib.BeginTextureMode(this);
+    }
+
+    public void EndDrawing()
+    {
+        Raylib.EndTextureMode();
+    }
+
     public readonly void Draw(int x, int y)
     {
         Draw(x, y, Color.White);
@@ -104,7 +114,7 @@ public struct RenderTexture2D : IValidable
         Raylib.DrawTexturePro(Texture, source, target, origin, rotation, color);
     }
 
-    public readonly void Unload()
+    public void Unload()
     {
         Raylib.UnloadRenderTexture(this);
     }
